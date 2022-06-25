@@ -1,3 +1,10 @@
 .jetBrains{
   font-family:'jetBrains Mono','cursive';
 }
+.pointer{
+  cursor:pointer;
+}
+.swiper {
+  width: 600px;
+  height: 300px;
+}
