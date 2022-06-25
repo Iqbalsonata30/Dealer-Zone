@@ -7,10 +7,11 @@
         <h5 class="card-header">Form Tambah Data </h5>
         <div class="card-body">
           <form action="/shop/save" method="POST">
+            <?= csrf_field(); ?>
             <div class="mb-3 row">
               <label for="merk" class="col-sm-2 col-form-label ">Merk </label>
               <div class="col-sm-10">
-                <input type="text" class="form-control <?= ($validation->hasError('merk')) ? 'is-invalid' : ''; ?>" id="merk" name="merk">
+                <input type="text" class="form-control <?= ($validation->hasError('merk')) ? 'is-invalid' : ''; ?>" id="merk" name="merk" value="<?= old('merk'); ?>">
                 <div class="invalid-feedback text-capitalize">
                   <?= $validation->getError('merk'); ?>
                 </div>
@@ -19,7 +20,7 @@
             <div class="mb-3 row">
               <label for="produk" class="col-sm-2 col-form-label">Produk </label>
               <div class="col-sm-10">
-                <input type="text" class="form-control <?= ($validation->hasError('produk')) ? 'is-invalid' : ''; ?>" id="produk" name="produk">
+                <input type="text" class="form-control <?= ($validation->hasError('produk')) ? 'is-invalid' : ''; ?>" id="produk" name="produk" value="<?= old('produk'); ?>">
                 <div class="invalid-feedback text-capitalize">
                   <?= $validation->getError('produk'); ?>
                 </div>

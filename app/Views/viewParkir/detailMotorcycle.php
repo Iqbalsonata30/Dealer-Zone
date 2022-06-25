@@ -21,7 +21,7 @@
                   <h5 class="card-title text-muted text-capitalize"><?= $DM['produk']; ?></h5>
                 </div>
                 <p class="card-text"><?= $DM['deskripsi']; ?></p>
-                <a href="#" class="btn btn-info"><i class="fa-solid fa-fw fa-cart-shopping"></i>Beli Sekarang</a>
+                <a href="#" class="btn btn-outline-primary"><i class="fa-solid fa-fw fa-cart-shopping"></i>Beli Sekarang</a>
               </div>
               <div class="card-footer text-center">
                 <small class="text-muted  fs-5">Rp. <?= format_rupiah($DM['harga']); ?></small>

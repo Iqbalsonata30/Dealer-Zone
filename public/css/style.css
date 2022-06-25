@@ -5,6 +5,17 @@
   cursor:pointer;
 }
 .swiper {
-  width: 600px;
-  height: 300px;
+  width: 700px;
+  height: 480px;
+  border-radius:25px;
+}
+
+.swiper-slide {
+  background-position: center;
+  background-size: cover;
+}
+.swiper-slide img {
+  border-radius:25px;
+  display: block;
+  width: 100%;
 }

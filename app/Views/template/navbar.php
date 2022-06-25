@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-3">
   <div class="container">
-    <a class="navbar-brand jetBrains fs-4">Dealer-Zone</a>
+    <a class="navbar-brand jetBrains fs-4" href="/shop">Dealer-Zone</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
