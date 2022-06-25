@@ -2,7 +2,7 @@
 <?= $this->section('content'); ?>
 <div class="container-fluid">
   <div class="row justify-content-center align-items-center mt-4">
-    <div class="col-lg-">
+    <div class="col-lg">
       <div class="swiper mySwiper shadow  animate__animated animate__zoomIn">
         <div class="swiper-wrapper ">
           <?php foreach ($DataMotorcycle as $DM) : ?>

@@ -25,7 +25,7 @@ class Shop extends BaseController
     helper(['my_helper']);
     $data = [
       'Title' => 'Shopping Area - Motorcycle',
-      'DataMotorcycle' => $this->DBShop->findAll()
+      'DataMotorcycle' => $this->DBShop->getMoreDetailMotorcycle()
     ];
     return view('viewParkir/detailMotorcycle', $data);
   }
@@ -59,5 +59,12 @@ class Shop extends BaseController
     ]);
     session()->setFlashdata('Alert', '<div id="alert"></div>');
     return redirect()->to('/shop/motorcycle');
+  }
+  public function detail($slug){
+    $data = [
+      'Title' => 'Detail Lengkap Motor',
+      'dataMotorcycle' => $this->DBShop->getMoreDetailMotorcycle($slug)
+    ];
+    return view('/viewParkir/moreDetail',$data);
   }
 }

@@ -9,4 +9,11 @@ class ModelShop extends Model
   protected $table = 'motorcycle';
   protected $useTimestamps = true;
   protected $allowedFields = ['slug', 'merk', 'produk', 'harga', 'gambar', 'deskripsi'];
+
+  public function getMoreDetailMotorcycle($slug = false){
+    if($slug === false){
+      return $this->findAll();
+    }
+    return $this->where(['slug' => $slug])->first();
+  }
 }
