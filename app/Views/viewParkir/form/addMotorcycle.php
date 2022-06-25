@@ -6,7 +6,7 @@
       <div class="card mt-3">
         <h5 class="card-header">Form Tambah Data </h5>
         <div class="card-body">
-          <form action="/shop/save" method="POST">
+          <form action="/shop/save" method="POST" enctype="multipart/form-data">
             <?= csrf_field(); ?>
             <div class="mb-3 row">
               <label for="merk" class="col-sm-2 col-form-label ">Merk </label>
@@ -36,11 +36,13 @@
               </div>
             </div>
             <div class="mb-3 row">
-              <label for="gambar" class="col-sm-2 col-form-label">Gambar </label>
+              <label for="gambar" class="col-sm-2 col-form-label ">Gambar </label>
               <div class="col-sm-10">
-                <input type="text" class="form-control <?= ($validation->hasError('gambar')) ? 'is-invalid' : ''; ?>" id="gambar" name="gambar">
-                <div class="invalid-feedback text-capitalize">
-                  <?= $validation->getError('gambar'); ?>
+                <div class="mb-3">
+                  <input class="form-control <?= ($validation->hasError('gambar')) ? 'is-invalid' : '';?>" type="file" id="gambar" name="gambar">
+                  <div class="invalid-feedback text-capitalize">
+                    <?= $validation->getError('gambar');?>
+                  </div>
                 </div>
               </div>
             </div>

@@ -17,11 +17,3 @@ const swiper = new Swiper(".mySwiper", {
   },
 });
 
-const alert = document.getElementById('alert');
-if(alert){
-  Swal.fire({
-    icon: 'success',
-    title: 'Congratulations',
-    text: 'Data berhasil ditambahkan!.',
-  }) 
-} 

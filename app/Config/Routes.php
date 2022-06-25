@@ -38,7 +38,8 @@ $routes->setAutoRoute(true);
 // route since we don't have to scan directories.
 $routes->get('/', 'Shop::index');
 $routes->get('/shop/motorcycle', 'Shop::motorcycle');
-$routes->get('shop/add', 'Shop::add');
+$routes->get('/shop/add', 'Shop::add');
+$routes->get('/shop/(:num)', 'Shop::delete/$1');
 $routes->get('/shop/(:any)', 'Shop::detail/$1');
 
 /*

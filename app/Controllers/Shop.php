@@ -19,7 +19,6 @@ class Shop extends BaseController
     ];
     return view('viewParkir/home', $data);
   }
-
   public function motorcycle()
   {
     helper(['my_helper']);
@@ -43,28 +42,47 @@ class Shop extends BaseController
       'merk' => 'required|is_unique[motorcycle.merk]',
       'produk' => 'required',
       'harga' => 'required',
-      'gambar' => 'required',
+      'gambar' => [
+        'rules' => 'uploaded[gambar]|max_size[gambar,1024]|is_image[gambar]|mime_in[gambar,image/png,image/jpeg,image/jpeg]',
+        'errors' => [
+          'max_size' => 'File yang anda upload terlalu besar.',
+          'uploaded' => 'Upload gambar terlebih dahulu.',
+          'is_image' => 'File yang anda upload bukan gambar.',
+          'mime_in' => 'File yang anda upload bukan gambar.'
+        ]
+      ],
       'deskripsi' => 'required'
     ])) {
       return redirect()->to('/shop/add')->withInput();
     }
+
+    $fileGambar = $this->request->getFile('gambar');
+    $namaGambar = $fileGambar->getRandomName();
+    $fileGambar->move('img/motorcycle', $namaGambar);
     $slug = url_title($this->request->getVar('merk'), '-', 'true');
     $this->DBShop->save([
       'slug' => $slug,
       'merk' => $this->request->getVar('merk'),
       'produk' => $this->request->getVar('produk'),
       'harga' => $this->request->getVar('harga'),
-      'gambar' => $this->request->getVar('gambar'),
+      'gambar' => $namaGambar,
       'deskripsi' => $this->request->getVar('deskripsi')
     ]);
     session()->setFlashdata('Alert', '<div id="alert"></div>');
     return redirect()->to('/shop/motorcycle');
   }
-  public function detail($slug){
+  public function detail($slug)
+  {
     $data = [
       'Title' => 'Detail Lengkap Motor',
       'dataMotorcycle' => $this->DBShop->getMoreDetailMotorcycle($slug)
     ];
-    return view('/viewParkir/moreDetail',$data);
+    return view('/viewParkir/moreDetail', $data);
+  }
+  public function delete($id)
+  {
+    $this->DBShop->delete($id);
+    session()->setFlashdata('Alert', '<div id="alertDelete"></div>');
+    return redirect()->to('/shop/motorcycle');
   }
 }
