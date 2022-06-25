@@ -1,32 +1,27 @@
 <?= $this->extend('templateAuth/template'); ?>
 <?= $this->section('Auth'); ?>
-<div class="container ">
-  <div class="row justify-content-center align-items-center mt-5">
-    <div class="col-lg-6">
-      <div class="card shadow-lg p-1 rounded text-center align-middle">
-        <div class="card-header">
+<div class="container-lg ">
+  <div class="row  justify-content-center align-items-center ">
+    <div class="col-lg-6 ">
+      <div class="card shadow-lg rounded ">
+        <div class="card-header text-center">
           <h2>Login</h2>
         </div>
         <div class="card-body">
-          <form>
+          <form action="" method="POST">
             <div class="mb-3">
-              <label for="exampleInputEmail1" class="form-label">Email address</label>
-              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-              <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+              <label for="inputUsername" class="form-label">Username :</label>
+              <input type="text" class="form-control" id="inputUsername" aria-describedby="emailHelp" name="username" autofocus>
             </div>
             <div class="mb-3">
-              <label for="exampleInputPassword1" class="form-label">Password</label>
-              <input type="password" class="form-control" id="exampleInputPassword1">
+              <label for="inputPassword" class="form-label">Password : </label>
+              <input type="password" class="form-control" id="inputPassword" name="password">
             </div>
-            <div class="mb-3 form-check">
-              <input type="checkbox" class="form-check-input" id="exampleCheck1">
-              <label class="form-check-label" for="exampleCheck1">Check me out</label>
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-info float-end">Log In</button>
           </form>
         </div>
-        <div class="card-footer text-muted">
-          2 days ago
+        <div class="card-footer fs-6 text-muted text-center">
+          Doesn't have account ?<a href="#" class="text-decoration-none"> Register Now !</a>
         </div>
       </div>
     </div>
