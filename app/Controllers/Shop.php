@@ -41,7 +41,7 @@ class Shop extends BaseController
     if (!$this->validate([
       'merk' => 'required|is_unique[motorcycle.merk]',
       'produk' => 'required',
-      'harga' => 'required',
+      'harga' => 'required|integer',
       'gambar' => [
         'rules' => 'uploaded[gambar]|max_size[gambar,1024]|is_image[gambar]|mime_in[gambar,image/png,image/jpeg,image/jpeg]',
         'errors' => [
@@ -81,8 +81,20 @@ class Shop extends BaseController
   }
   public function delete($id)
   {
+    $Motorcycle = $this->DBShop->find($id);
+    unlink('img/motorcycle/'.$Motorcycle['gambar']);
     $this->DBShop->delete($id);
     session()->setFlashdata('Alert', '<div id="alertDelete"></div>');
     return redirect()->to('/shop/motorcycle');
+  }
+  public function edit($slug)
+  {
+    $data =
+      [
+        'Title' => 'Edit Data Motor',
+        'dataMotorcycle' => $this->DBShop->getMoreDetailMotorcycle($slug),
+        'validation' => \Config\Services::validation()
+      ];
+    return view('viewParkir/form/editMotorcycle', $data);
   }
 }

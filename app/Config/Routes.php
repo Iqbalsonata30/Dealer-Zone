@@ -39,7 +39,8 @@ $routes->setAutoRoute(true);
 $routes->get('/', 'Shop::index');
 $routes->get('/shop/motorcycle', 'Shop::motorcycle');
 $routes->get('/shop/add', 'Shop::add');
-$routes->get('/shop/(:num)', 'Shop::delete/$1');
+$routes->get('/shop/edit/(:segment)','Shop::edit/$1');
+$routes->delete('/shop/(:num)', 'Shop::delete/$1');
 $routes->get('/shop/(:any)', 'Shop::detail/$1');
 
 /*

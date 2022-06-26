@@ -17,3 +17,15 @@ const swiper = new Swiper(".mySwiper", {
   },
 });
 
+const previewImage = () =>{
+  const image = document.getElementById('gambar');
+  const imagePreview = document.getElementsByClassName('img-preview');
+  
+    const showImage = new FileReader();
+    showImage.readAsDataURL(image.files[0]);
+    showImage.onload = (e) => {
+      imagePreview[0].src = e.target.result;
+    }
+}
+
+
