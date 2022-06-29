@@ -6,12 +6,14 @@
       <div class="card mt-3">
         <h5 class="card-header">Form Edit Data </h5>
         <div class="card-body">
-          <form action="/shop/save" method="POST" enctype="multipart/form-data">
+          <form action="/shop/update/<?= $dataMotorcycle['id']; ?>" method="POST" enctype="multipart/form-data">
             <?= csrf_field(); ?>
             <div class="mb-3 row">
+              <input type="hidden" name="id" value="<?= $dataMotorcycle['id']; ?>">
+              <input type="hidden" name="gambarLama" value="<?= $dataMotorcycle['gambar']; ?>">
               <label for="merk" class="col-sm-2 col-form-label ">Merk </label>
               <div class="col-sm-10">
-                <input type="text" class="form-control <?= ($validation->hasError('merk')) ? 'is-invalid' : ''; ?>" id="merk" name="merk" value="<?= $dataMotorcycle['merk']; ?>">
+                <input type="text" class="form-control  <?= ($validation->hasError('merk')) ? 'is-invalid' : ''; ?>" id="merk" name="merk" value="<?= $dataMotorcycle['merk']; ?>">
                 <div class="invalid-feedback text-capitalize">
                   <?= $validation->getError('merk'); ?>
                 </div>
@@ -20,7 +22,7 @@
             <div class="mb-3 row">
               <label for="produk" class="col-sm-2 col-form-label">Produk </label>
               <div class="col-sm-10">
-                <input type="text" class="form-control <?= ($validation->hasError('produk')) ? 'is-invalid' : ''; ?>" id="produk" name="produk" value="<?= $dataMotorcycle['produk']; ?>">
+                <input type="text" class="form-control  <?= ($validation->hasError('produk')) ? 'is-invalid' : ''; ?>" id="produk" name="produk" value="<?= $dataMotorcycle['produk']; ?>">
                 <div class="invalid-feedback text-capitalize">
                   <?= $validation->getError('produk'); ?>
                 </div>
@@ -37,11 +39,16 @@
             </div>
             <div class="mb-3 row">
               <label for="gambar" class="col-sm-2 col-form-label ">Gambar </label>
-              <div class="col-sm-10">
+              <div class="col-sm-2">
+                <img src="/img/motorcycle/<?= $dataMotorcycle['gambar']; ?>" class="img-thumbnail img-preview">
+              </div>
+              <div class="col-sm-8">
                 <div class="mb-3">
-                  <input class="form-control <?= ($validation->hasError('gambar')) ? 'is-invalid' : ''; ?>" type="file" id="gambar" name="gambar" value="<?= $dataMotorcycle['gambar']; ?>">
-                  <div class="invalid-feedback text-capitalize">
-                    <?= $validation->getError('gambar'); ?>
+                  <div class="input-group">
+                    <input type="file" class="form-control <?= ($validation->hasError('gambar')) ? 'is-invalid' : ''; ?>" id="gambar" name="gambar" onchange="previewImage()">
+                    <div class="invalid-feedback text-capitalize">
+                      <?= $validation->getError('gambar'); ?>
+                    </div>
                   </div>
                 </div>
               </div>

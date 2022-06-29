@@ -34,6 +34,7 @@
           </div>
         <?php endforeach; ?>
       </div>
+      <?= $Pager->links('motorcycle', 'viewPagination'); ?>
     </div>
   </div>
 </div>
