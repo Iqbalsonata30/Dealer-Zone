@@ -1,6 +1,6 @@
 <?php $pager->setSurroundCount(1) ?>
-<nav aria-label="Page navigation example">
-  <ul class="pagination">
+<nav aria-label="Page navigation example ">
+  <ul class="pagination justify-content-center">
     <?php if ($pager->hasPrevious()) : ?>
       <li class="page-item">
         <a class="page-link" href="<?= $pager->getPrevious() ?>" aria-label="<?= lang('Pager.previous') ?>">

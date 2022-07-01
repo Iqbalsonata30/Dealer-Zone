@@ -10,6 +10,16 @@
   border-radius:25px;
 }
 
+.WidthCar{
+  max-width:840px;
+}
+
+.CarsSwiper{
+  width:600px;
+  height:400px;
+  border-radius:25px;
+}
+
 .swiper-slide {
   background-position: center;
   background-size: cover;
@@ -22,6 +32,9 @@
 .image-detail{
   height:350px;
   box-shadow:20%;
+}
+.text-justified{
+  text-align:justify;
 }
 
 @media screen and (max-width:800px){
@@ -38,4 +51,5 @@
     display: block;
     width: 100%;
   }
+ 
 }

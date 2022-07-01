@@ -43,6 +43,9 @@ $routes->get('/shop/edit/(:num)', 'Shop::update/$1');
 $routes->get('/shop/edit/(:segment)', 'Shop::edit/$1');
 $routes->delete('/shop/(:num)', 'Shop::delete/$1');
 $routes->get('/shop/(:any)', 'Shop::detail/$1');
+$routes->get('/cars/add', 'Cars::add');
+$routes->delete('/cars/(:num)', 'Cars::delete/$1');
+$routes->get('/cars/(:any)', 'Cars::detailCar/$1');
 
 /*
  * --------------------------------------------------------------------
