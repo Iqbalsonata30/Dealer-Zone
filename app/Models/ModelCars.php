@@ -17,4 +17,9 @@ class ModelCars extends Model
         }
         return $this->findAll();
     }
+
+    public function searchCar($search)
+    {
+        return $this->like('merk', $search)->orLike('produk', $search)->orLike('harga',$search);
+    }
 }

@@ -21,10 +21,16 @@ class Shop extends BaseController
   }
   public function motorcycle()
   {
+    $search = $this->request->getVar('keyword');
+    if ($search) {
+      $SearchMotorcycle = $this->DBShop->searchData($search);
+    } else {
+      $SearchMotorcycle = $this->DBShop;
+    }
     helper(['my_helper']);
     $data = [
       'Title' => 'Shopping Area - Motorcycle',
-      'DataMotorcycle' => $this->DBShop->paginate(3, 'motorcycle'),
+      'DataMotorcycle' => $SearchMotorcycle->paginate(3,'motorcycle'),
       'Pager' => $this->DBShop->pager,
     ];
     return view('viewParkir/detailMotorcycle', $data);

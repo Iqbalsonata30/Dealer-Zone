@@ -14,7 +14,7 @@
             <a class="nav-link dropdown-toggle dropdown-toggle-split pointer" data-bs-toggle="dropdown" aria-expanded="false">
               Daftar Kendaraan <span class="visually-hidden"></span>
             </a>
-            <ul class="dropdown-menu dropdown-menu-dark ">
+            <ul class="dropdown-menu dropdown-menu-dark animate__animated animate__zoomIn animate__faster ">
               <li>
                 <a class="dropdown-item" href="/shop/motorcycle">Kendaraan Roda 2</a>
               </li>
@@ -33,7 +33,6 @@
         <li class="nav-item">
           <a class="nav-link" href="#">Pricing</a>
         </li>
-
       </ul>
     </div>
   </div>

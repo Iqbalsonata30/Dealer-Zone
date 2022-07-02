@@ -4,25 +4,36 @@
   <?= session()->getFlashdata('Alert'); ?>
 <?php endif; ?>
 <div class="container mt-3">
-  <div class="row justify-content-start">
+  <div class="row justify-content-between">
     <div class="col-lg-4 my-2 ">
       <a href="/cars/add" class="btn btn-dark ">Tambah Data</a>
     </div>
+    <div class="col-lg-4">
+      <form class="d-flex" role="search" action="" method="POST">
+        <input class="form-control me-2" type="search" placeholder="Masukkan Keyword Pencarian!" aria-label="Search" name="search">
+        <button class="btn btn-outline-primary" type="submit">Search</button>
+      </form>
+    </div>
   </div>
   <div class="row justify-content-center ">
-    <div class="col-lg mb-3">
-      <div class="swiper shadow CarsSwiper">
-        <div class="swiper-wrapper">
-          <?php foreach ($slider as $C) : ?>
-            <div class="swiper-slide">
-              <img src="/img/cars/<?= $C['gambar']; ?>" alt="<?= $C['merk']; ?>" />
-            </div>
-          <?php endforeach; ?>
+    <?php if (empty($CarsData)) : ?>
+      <div id="kosong"></div>
+    <?php endif; ?>
+    <?php if (!$search) : ?>
+      <div class="col-lg mb-3">
+        <div class="swiper shadow CarsSwiper">
+          <div class="swiper-wrapper">
+            <?php foreach ($slider as $C) : ?>
+              <div class="swiper-slide">
+                <img src="/img/cars/<?= $C['gambar']; ?>" alt="<?= $C['merk']; ?>" />
+              </div>
+            <?php endforeach; ?>
+          </div>
+          <div class="swiper-pagination"></div>
+          <div class="swiper-scrollbar"></div>
         </div>
-        <div class="swiper-pagination"></div>
-        <div class="swiper-scrollbar"></div>
       </div>
-    </div>
+    <?php endif; ?>
     <?php foreach ($CarsData as $C) : ?>
       <div class="col-lg-6">
         <div class="card shadow mb-3">

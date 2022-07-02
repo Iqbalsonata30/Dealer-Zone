@@ -22,7 +22,7 @@
                   <input type="hidden" name="_method" value="DELETE">
                   <button type="submit" class="btn btn-danger me-2">Delete</button>
                 </form>
-                <a class="btn btn-warning">Edit</a>
+                <a href="/cars/edit/<?= $FullDetail['slug']; ?>" class=" btn btn-warning">Edit</a>
               </div>
             </div>
           </div>

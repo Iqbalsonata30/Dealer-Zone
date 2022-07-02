@@ -8,7 +8,13 @@
     <h5 class="card-header text-center">Daftar Kendaraan Roda 2</h5>
     <div class="card-body">
       <div class="mb-3">
-        <a href="/shop/add" class="btn btn-dark"><i class="fa-solid fa-fw fa-circle-plus"></i>Tambah Data Motor</a>
+        <div class="d-flex justify-content-between">
+          <form class="d-flex col-lg-4" role="search" action="" method="POST">
+            <input class="form-control me-2 lg" name="keyword" type="search" placeholder="Masukkan Keyword Pencarian!" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+          </form>
+          <a href="/shop/add" class="btn btn-dark"><i class="fa-solid fa-fw fa-circle-plus"></i>Tambah Data Motor</a>
+        </div>
       </div>
       <div class="row">
         <?php foreach ($DataMotorcycle as $DM) : ?>
@@ -33,6 +39,10 @@
             </div>
           </div>
         <?php endforeach; ?>
+        <?php if (empty($DataMotorcycle)) : ?>
+          <div id="kosong">
+          </div>
+        <?php endif; ?>
       </div>
       <?= $Pager->links('motorcycle', 'viewPagination'); ?>
     </div>

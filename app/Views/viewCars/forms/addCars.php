@@ -16,7 +16,7 @@
               </div>
             </div>
             <div class="form-floating mb-3">
-              <input type="text" class="form-control <?= ($validation->hasError('produk')) ? 'is-invalid' : ''; ?>" id="produkInput" placeholder="name@example.com" name="produk" value="<?= old('produk'); ?>"/>
+              <input type="text" class="form-control <?= ($validation->hasError('produk')) ? 'is-invalid' : ''; ?>" id="produkInput" placeholder="name@example.com" name="produk" value="<?= old('produk'); ?>" />
               <label for="produkInput">Asal Produk</label>
               <div class="invalid-feedback text-capitalize">
                 <?= $validation->getError('produk'); ?>
