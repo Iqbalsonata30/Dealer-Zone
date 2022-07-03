@@ -22,4 +22,9 @@ class ModelCars extends Model
     {
         return $this->like('merk', $search)->orLike('produk', $search)->orLike('harga',$search);
     }
+
+    public function getTotalCars(){
+        $query = $this->query('select * from cars');
+        return $query->getNumRows();
+    }
 }

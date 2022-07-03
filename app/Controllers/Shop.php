@@ -3,43 +3,53 @@
 namespace App\Controllers;
 
 use App\Models\ModelShop;
+use App\Models\ModelUsers;
 
 class Shop extends BaseController
 {
   protected $DBShop;
+  protected $DBUser;
+
   public function __construct()
   {
+    $this->DBUser = new ModelUsers();
     $this->DBShop = new ModelShop();
-  }
-  public function index()
-  {
-    $data = [
-      'Title' => 'Dashboard Dealer',
-      'DataMotorcycle' => $this->DBShop->findAll()
-    ];
-    return view('viewParkir/home', $data);
   }
   public function motorcycle()
   {
     $search = $this->request->getVar('keyword');
-    if ($search) {
-      $SearchMotorcycle = $this->DBShop->searchData($search);
-    } else {
-      $SearchMotorcycle = $this->DBShop;
+    $Access = $this->DBUser->where(array('username' => session('username')))->first();
+    if (!$Access) {
+      session()->setFlashdata('Alert', '<div class="alert alert-info alert-dismissible fade show" role="alert">
+      <b>Login terlebih dahulu !</b>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>');
+      return redirect()->to('/auth');
     }
+    ($search) ? $SearchMotorcycle = $this->DBShop->searchData($search) : $SearchMotorcycle = $this->DBShop;
     helper(['my_helper']);
     $data = [
       'Title' => 'Shopping Area - Motorcycle',
-      'DataMotorcycle' => $SearchMotorcycle->paginate(3,'motorcycle'),
+      'DataMotorcycle' => $SearchMotorcycle->paginate(3, 'motorcycle'),
       'Pager' => $this->DBShop->pager,
+      'UserNavbar'    => $Access,
     ];
     return view('viewParkir/detailMotorcycle', $data);
   }
   public function add()
   {
+    $Access = $this->DBUser->where(array('username' => session('username')))->first();
+    if (!$Access) {
+      session()->setFlashdata('Alert', '<div class="alert alert-info alert-dismissible fade show" role="alert">
+      <b>Login terlebih dahulu !</b>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>');
+      return redirect()->to('/auth');
+    }
     $data = [
       'Title' => 'Add Data Motorcycle',
-      'validation' => \Config\Services::validation()
+      'validation' => \Config\Services::validation(),
+      'UserNavbar'    => $Access,
     ];
     return view('viewParkir/form/addMotorcycle', $data);
   }
@@ -67,6 +77,7 @@ class Shop extends BaseController
     $namaGambar = $fileGambar->getRandomName();
     $fileGambar->move('img/motorcycle', $namaGambar);
     $slug = url_title($this->request->getVar('merk'), '-', 'true');
+
     $this->DBShop->save([
       'slug' => $slug,
       'merk' => $this->request->getVar('merk'),
@@ -80,9 +91,18 @@ class Shop extends BaseController
   }
   public function detail($slug)
   {
+    $Access = $this->DBUser->where(array('username' => session('username')))->first();
+    if (!$Access) {
+      session()->setFlashdata('Alert', '<div class="alert alert-info alert-dismissible fade show" role="alert">
+      <b>Login terlebih dahulu !</b>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>');
+      return redirect()->to('/auth');
+    }
     $data = [
       'Title' => 'Detail Lengkap Motor',
-      'dataMotorcycle' => $this->DBShop->getMoreDetailMotorcycle($slug)
+      'dataMotorcycle' => $this->DBShop->getMoreDetailMotorcycle($slug),
+      'UserNavbar'    => $Access,
     ];
     if (is_null($data['dataMotorcycle'])) {
       throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound("Motor $slug tidak dapat ditemukan!");
@@ -99,11 +119,20 @@ class Shop extends BaseController
   }
   public function edit($slug)
   {
+    $Access = $this->DBUser->where(array('username' => session('username')))->first();
+    if (!$Access) {
+      session()->setFlashdata('Alert', '<div class="alert alert-info alert-dismissible fade show" role="alert">
+      <b>Login terlebih dahulu !</b>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>');
+      return redirect()->to('/auth');
+    }
     $data =
       [
         'Title' => 'Edit Data Motor',
         'dataMotorcycle' => $this->DBShop->getMoreDetailMotorcycle($slug),
-        'validation' => \Config\Services::validation()
+        'validation' => \Config\Services::validation(),
+        'UserNavbar'    => $Access,
       ];
     return view('viewParkir/form/editMotorcycle', $data);
   }

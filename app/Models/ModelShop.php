@@ -19,6 +19,11 @@ class ModelShop extends Model
   }
   public function searchData($search)
   {
-    return $this->like('merk', $search)->orLike('produk',$search);
+    return $this->like('merk', $search)->orLike('produk', $search);
+  }
+  public function getTotalMotorcycles()
+  {
+    $query = $this->query('select * from motorcycle');
+    return $query->getNumRows();
   }
 }

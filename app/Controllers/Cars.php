@@ -3,34 +3,55 @@
 namespace App\Controllers;
 
 use App\Models\ModelCars;
+use App\Models\ModelUsers;
 
 class Cars extends BaseController
 {
     protected $DBCars;
+    protected $DBUser;
     public function __construct()
     {
+        $this->DBUser = new ModelUsers();
         $this->DBCars = new ModelCars();
     }
     public function index()
     {
+        $Access = $this->DBUser->where(array('username' => session('username')))->first();
+        if (!$Access) {
+            session()->setFlashdata('Alert', '<div class="alert alert-info alert-dismissible fade show" role="alert">
+            <b>Login terlebih dahulu !</b>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>');
+            return redirect()->to('/auth');
+        }
         $search = $this->request->getVar('search');
         ($search) ? $SearchCars = $this->DBCars->searchCar($search) : $SearchCars = $this->DBCars;
         helper('my_helper');
         $data = [
-            'Title' => 'Shopping Area - Cars',
-            'CarsData' => $SearchCars->paginate(2, 'cars'),
-            'slider' => $this->DBCars->getCars(),
-            'Pager' => $this->DBCars->pager,
-            'search' => $this->request->getVar('search'),
+            'Title'         => 'Shopping Area - Cars',
+            'CarsData'      => $SearchCars->paginate(2, 'cars'),
+            'slider'        => $this->DBCars->getCars(),
+            'Pager'         => $this->DBCars->pager,
+            'search'        => $this->request->getVar('search'),
+            'UserNavbar'    => $Access,
         ];
         return view('viewCars/detailCars', $data);
     }
 
     public function add()
     {
+        $Access = $this->DBUser->where(array('username' => session('username')))->first();
+        if (!$Access) {
+            session()->setFlashdata('Alert', '<div class="alert alert-info alert-dismissible fade show" role="alert">
+            <b>Login terlebih dahulu !</b>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>');
+            return redirect()->to('/auth');
+        }
         $data = [
             'Title'      => 'Tambah Data Mobil',
             'validation' => \Config\Services::validation(),
+            'UserNavbar'    => $Access,
         ];
         return view('viewCars/forms/addCars', $data);
     }
@@ -70,11 +91,20 @@ class Cars extends BaseController
     }
     public function detailCar($slug)
     {
+        $Access = $this->DBUser->where(array('username' => session('username')))->first();
+        if (!$Access) {
+            session()->setFlashdata('Alert', '<div class="alert alert-info alert-dismissible fade show" role="alert">
+            <b>Login terlebih dahulu !</b>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>');
+            return redirect()->to('/auth');
+        }
         $dataCar = $this->DBCars->getCars($slug);
         $TitleBar = $dataCar['merk'];
         $data = [
             'Title' => "Data Mobil $TitleBar",
             'FullDetail' => $dataCar,
+            'UserNavbar'    => $Access,
         ];
         return view('viewCars/fullDetailCar', $data);
     }
@@ -88,12 +118,21 @@ class Cars extends BaseController
     }
     public function edit($slug)
     {
+        $Access = $this->DBUser->where(array('username' => session('username')))->first();
+        if (!$Access) {
+            session()->setFlashdata('Alert', '<div class="alert alert-info alert-dismissible fade show" role="alert">
+            <b>Login terlebih dahulu !</b>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>');
+            return redirect()->to('/auth');
+        }
         $dataCar = $this->DBCars->getCars($slug);
         $titleBar = $dataCar['merk'];
         $data = [
             'Title' => "Edit Data $titleBar ",
             'validation' => \Config\Services::validation(),
             'detailCar' => $this->DBCars->getCars($slug),
+            'UserNavbar'    => $Access,
         ];
         return view('viewCars/forms/editCar', $data);
     }

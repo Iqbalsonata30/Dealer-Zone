@@ -9,11 +9,22 @@
   height: 480px;
   border-radius:25px;
 }
+.profile-picture{
+  width:40px;
+  height:40px;
+  border:1px solid azure;
+  box-shadow :2px 3px 3px rgba(255,255,255,0.3);
+}
 
 .WidthCar{
   max-width:840px;
 }
-
+.widthCards{
+  max-width:18rem;
+}
+.shadow-card1{
+  box-shadow:5px 5px 15px lightblue;
+}
 .CarsSwiper{
   width:600px;
   height:400px;
@@ -51,5 +62,9 @@
     display: block;
     width: 100%;
   }
- 
+  .responsive{
+    width:70px;
+    height:70px;
+    margin-bottom:2px;
+  }
 }

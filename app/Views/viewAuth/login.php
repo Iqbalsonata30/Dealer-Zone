@@ -1,27 +1,36 @@
 <?= $this->extend('templateAuth/template'); ?>
 <?= $this->section('Auth'); ?>
-<div class="container-lg ">
-  <div class="row  justify-content-center align-items-center ">
-    <div class="col-lg-6 ">
-      <div class="card shadow-lg rounded ">
-        <div class="card-header text-center">
-          <h2>Login</h2>
-        </div>
+
+<div class="container-lg my-5">
+  <div class="row h-100 d-flex flex-column align-items-center align-content-center   ">
+    <div class="col-lg-6  align-self-center ">
+      <div class="card shadow rounded-4 p-3  animate__animated animate__fadeInUp">
         <div class="card-body">
-          <form action="" method="POST">
-            <div class="mb-3">
-              <label for="inputUsername" class="form-label">Username :</label>
-              <input type="text" class="form-control" id="inputUsername" aria-describedby="emailHelp" name="username" autofocus>
+          <h3 class="fw-bolder mb-2 jetBrains">Sign In Dealer-Zone</h3>
+          <form action="/auth/verifyUser" method=" POST">
+            <?= csrf_field(); ?>
+            <div class="row">
+              <div class="col-lg">
+                <?php if (session()->getFlashdata('Alert')) : ?>
+                  <?= session()->getFlashdata('Alert'); ?>
+                <?php endif; ?>
+              </div>
             </div>
-            <div class="mb-3">
-              <label for="inputPassword" class="form-label">Password : </label>
-              <input type="password" class="form-control" id="inputPassword" name="password">
+            <div class="form-floating my-3">
+              <input type="text" class="form-control" id="floatingInput" placeholder="Username" name="username">
+              <label for="floatingInput">Username</label>
             </div>
-            <button type="submit" class="btn btn-info float-end">Log In</button>
+            <div class="form-floating mb-3">
+              <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password">
+              <label for="floatingPassword">Password</label>
+            </div>
+            <div class="d-grid gap-2">
+              <button type="submit" class="btn btn-info fw-semibold btn-lg">Log In</button>
+            </div>
           </form>
         </div>
         <div class="card-footer fs-6 text-muted text-center">
-          Doesn't have account ?<a href="#" class="text-decoration-none"> Register Now !</a>
+          Doesn't have account ?<a href="/auth/register" class="text-decoration-none"> Register Now !</a>
         </div>
       </div>
     </div>

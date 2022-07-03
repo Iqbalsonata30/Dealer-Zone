@@ -1,4 +1,5 @@
 const alert = document.getElementById('alert');
+const createAlert = document.getElementById('createAccount');
 const deleteAlert = document.getElementById('alertDelete');
 const editAlert = document.getElementById('edit');
 const AlertEmpty = document.getElementById('kosong');
@@ -43,5 +44,11 @@ if(AlertEmpty){
       popup: 'animate__animated animate__fadeInDown'
     },
     timer:1500
+  }) 
+}
+if(createAlert){
+  Swal.fire({
+    icon: 'info',
+    title: 'Akun anda berhasil terdaftar !',
   }) 
 }
