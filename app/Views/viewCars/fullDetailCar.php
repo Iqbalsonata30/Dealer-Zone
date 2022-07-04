@@ -16,14 +16,16 @@
               </div>
               <p class="card-text"><?= $FullDetail['deskripsi']; ?></p>
               <h5 class="card-text"><small class="text-muted">Rp.<?= format_rupiah($FullDetail['harga']); ?></small></h5>
-              <a href="/cars" class="btn btn-outline-dark float-start">Kembali</a>
-              <div class="d-flex justify-content-end">
-                <form action="/cars/<?= $FullDetail['id']; ?>" method="POST">
-                  <input type="hidden" name="_method" value="DELETE">
-                  <button type="submit" class="btn btn-danger me-2">Delete</button>
-                </form>
-                <a href="/cars/edit/<?= $FullDetail['slug']; ?>" class=" btn btn-warning">Edit</a>
-              </div>
+              <a href="/cars" class="btn btn-outline-dark float-start mb-2">Kembali</a>
+              <?php if ($UserNavbar['role_id'] == 1) : ?>
+                <div class="d-flex justify-content-end">
+                  <form action="/cars/<?= $FullDetail['id']; ?>" method="POST">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <button type="submit" class="btn btn-danger me-2">Delete</button>
+                  </form>
+                  <a href="/cars/edit/<?= $FullDetail['slug']; ?>" class=" btn btn-warning">Edit</a>
+                </div>
+              <?php endif; ?>
             </div>
           </div>
         </div>

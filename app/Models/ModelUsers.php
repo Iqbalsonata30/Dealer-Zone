@@ -7,10 +7,11 @@ use CodeIgniter\Model;
 class ModelUsers extends Model
 {
     protected $table            = 'users';
-    protected $allowedFields    = ['fullname','username','password','password_confir','profile'];
+    protected $allowedFields    = ['fullname', 'username', 'password', 'password_confir', 'profile', 'role_id'];
     protected $useTimestamps    = true;
 
-    public function getTotalUsers(){
+    public function getTotalUsers()
+    {
         $query = $this->query('select * from users');
         return $query->getNumRows();
     }

@@ -42,7 +42,7 @@ class Auth extends BaseController
           'alpha_space'       => 'Nama lengkap hanya harus berisi huruf.'
         ]
       ],
-      'username'        => 'required|is_unique[users.username]|min_length[3]',
+      'username'        => 'required|is_unique[users.username]|min_length[3]|alpha_dash',
       'password'        => [
         'rules'         => 'required|min_length[3]|matches[password_confir]',
         'errors'        => [
@@ -79,6 +79,7 @@ class Auth extends BaseController
       'password'        => password_hash($this->request->getVar('password'), PASSWORD_DEFAULT),
       'password_confir' => password_hash($this->request->getVar('password_confir'), PASSWORD_DEFAULT),
       'profile'         => $ProfileName,
+      'role_id'         => 2,
     ]);
     session()->setFlashdata('Alert', '<div id="createAccount"></div>');
     return redirect()->to('/auth');
@@ -92,7 +93,8 @@ class Auth extends BaseController
     if ($user) {
       if (password_verify($password, $user['password'])) {
         $userdata = [
-          'username' => $username,
+          'username' => $user['username'],
+          'role_id'  => $user['role_id']
         ];
         session()->set($userdata);
         return redirect()->to('/home');

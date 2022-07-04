@@ -37,6 +37,7 @@ $routes->setAutoRoute(true);
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
+$routes->get('/home', 'Home::index');
 
 // Motorcycle Routes
 $routes->get('/shop/motorcycle', 'Shop::motorcycle');
@@ -61,6 +62,7 @@ $routes->get('/auth/register', 'Auth::register');
 // Profile Routes
 $routes->post('/profile/change', 'Profile::change');
 $routes->post('/profile/change/(:num)', 'Profile::update/$1');
+$routes->get('/(:segment)', 'Profile::index/$1');
 /*
  * --------------------------------------------------------------------
  * Additional Routing

@@ -21,6 +21,7 @@
                 <?= session('Alert'); ?>
               <?php endif; ?>
               <form action="/profile/update/<?= $UserNavbar['id']; ?>" method="POST">
+              <?= csrf_field();?>
                 <input type="hidden" name="id" value="<?= $UserNavbar['id']; ?>">
                 <div class="mb-3">
                   <label for="password" class="form-label">Password Lama</label>

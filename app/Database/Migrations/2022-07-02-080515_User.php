@@ -9,21 +9,21 @@ class User extends Migration
     public function up()
     {
         $this->forge->addField([
-            'id' => [
+            'id'         => [
                 'type'           => 'INT',
                 'constraint'     => 11,
                 'unsigned'       => true,
                 'auto_increment' => true,
             ],
-            'fullname' => [
+            'fullname'   => [
                 'type'       => 'VARCHAR',
                 'constraint' => '255',
             ],
-            'username' => [
+            'username'   => [
                 'type'       => 'VARCHAR',
                 'constraint' => '255',
             ],
-            'password' => [
+            'password'   => [
                 'type'       => 'VARCHAR',
                 'constraint' => '255',
             ],
@@ -31,9 +31,13 @@ class User extends Migration
                 'type'       => 'VARCHAR',
                 'constraint' => '255',
             ],
-            'profile' => [
+            'profile'    => [
                 'type'       => 'VARCHAR',
                 'constraint' => '255',
+            ],
+            'role_id'    => [
+                'type'       => 'VARCHAR',
+                'constraint' => '255'
             ],
             'created_at' => [
                 'type'       => 'DATETIME',

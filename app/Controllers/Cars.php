@@ -41,6 +41,7 @@ class Cars extends BaseController
     public function add()
     {
         $Access = $this->DBUser->where(array('username' => session('username')))->first();
+        if ($Access['role_id'] != 1) return redirect()->to('/home');
         if (!$Access) {
             session()->setFlashdata('Alert', '<div class="alert alert-info alert-dismissible fade show" role="alert">
             <b>Login terlebih dahulu !</b>
@@ -91,22 +92,26 @@ class Cars extends BaseController
     }
     public function detailCar($slug)
     {
-        $Access = $this->DBUser->where(array('username' => session('username')))->first();
-        if (!$Access) {
-            session()->setFlashdata('Alert', '<div class="alert alert-info alert-dismissible fade show" role="alert">
-            <b>Login terlebih dahulu !</b>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>');
-            return redirect()->to('/auth');
+        try {
+            $Access = $this->DBUser->where(array('username' => session('username')))->first();
+            if (!$Access) {
+                session()->setFlashdata('Alert', '<div class="alert alert-info alert-dismissible fade show" role="alert">
+                <b>Login terlebih dahulu !</b>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>');
+                return redirect()->to('/auth');
+            }
+            $dataCar = $this->DBCars->getCars($slug);
+            $TitleBar = $dataCar['merk'];
+            $data = [
+                'Title' => "Data Mobil $TitleBar",
+                'FullDetail' => $dataCar,
+                'UserNavbar'    => $Access,
+            ];
+            return view('viewCars/fullDetailCar', $data);
+        } catch (\throwable) {
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound('Mobil ' . $slug . ' tidak dapat ditemukan ');
         }
-        $dataCar = $this->DBCars->getCars($slug);
-        $TitleBar = $dataCar['merk'];
-        $data = [
-            'Title' => "Data Mobil $TitleBar",
-            'FullDetail' => $dataCar,
-            'UserNavbar'    => $Access,
-        ];
-        return view('viewCars/fullDetailCar', $data);
     }
     public function delete($id)
     {
@@ -119,6 +124,7 @@ class Cars extends BaseController
     public function edit($slug)
     {
         $Access = $this->DBUser->where(array('username' => session('username')))->first();
+        if ($Access['role_id'] != 1) return redirect()->to('/home');
         if (!$Access) {
             session()->setFlashdata('Alert', '<div class="alert alert-info alert-dismissible fade show" role="alert">
             <b>Login terlebih dahulu !</b>

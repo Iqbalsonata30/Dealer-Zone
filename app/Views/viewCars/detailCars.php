@@ -4,10 +4,12 @@
   <?= session()->getFlashdata('Alert'); ?>
 <?php endif; ?>
 <div class="container mt-3">
-  <div class="row justify-content-between">
-    <div class="col-lg-4 my-2 ">
-      <a href="/cars/add" class="btn btn-dark ">Tambah Data</a>
-    </div>
+  <div class="row justify-content-between mb-2">
+    <?php if ($UserNavbar['role_id']  == 1) : ?>
+      <div class="col-lg-4 my-2 ">
+        <a href="/cars/add" class="btn btn-dark ">Tambah Data</a>
+      </div>
+    <?php endif; ?>
     <div class="col-lg-4">
       <form class="d-flex" role="search" action="" method="POST">
         <input class="form-control me-2" type="search" placeholder="Masukkan Keyword Pencarian!" aria-label="Search" name="search">

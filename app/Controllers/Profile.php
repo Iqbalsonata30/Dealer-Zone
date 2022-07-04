@@ -11,8 +11,31 @@ class Profile extends BaseController
     {
         $this->DBUser = new ModelUsers();
     }
-    public function index()
+    public function index($username)
     {
+        try {
+            $user = $this->DBUser->where(array('username' => $username))->first();
+            $Access = $this->DBUser->where(array('username' => session('username')))->first();
+            if (!$Access) {
+                session()->setFlashdata('Alert', '<div class="alert alert-info alert-dismissible fade show" role="alert">
+            <b>Login terlebih dahulu !</b>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>');
+                return redirect()->to('/auth');
+            }
+            $UsernameUser = $user['username'];
+            $FullNameUser = ucwords(strtolower($user['fullname']));
+
+
+            $data = [
+                'Title'      => "$FullNameUser - $UsernameUser",
+                'UserNavbar' => $Access,
+                'profile'    => $user,
+            ];
+            return view('viewProfile/profile', $data);
+        } catch (\Throwable) {
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound('Username ' . $username . ' tidak dapat ditemukan');
+        }
     }
 
     public function change()

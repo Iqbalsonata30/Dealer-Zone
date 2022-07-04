@@ -16,12 +16,14 @@
         <div class="card-body">
           <div class="d-flex justify-content-between">
             <a href="/shop/motorcycle" class="btn btn-dark float-start"><i class="fa-solid fa-fw fa-left-long me-1"></i><span>Kembali</span></a>
-            <a href="/shop/edit/<?= $dataMotorcycle['slug']; ?>" class="btn btn-warning mx-2 float-end"><i class="fa-solid fa-fw fa-pen-fancy ms-1"></i>Edit Data</a>
-            <form action="/shop/<?= $dataMotorcycle['id']; ?>"method="POST">
-              <?= csrf_field(); ?>
-              <input type="hidden" name="_method" value="DELETE">
-              <button type="submit" class="btn btn-danger"><i class="fa-solid fa-fw fa-trash ms-1"></i>Delete</button>
-            </form>
+            <?php if ($UserNavbar['role_id'] == 1) : ?>
+              <a href="/shop/edit/<?= $dataMotorcycle['slug']; ?>" class="btn btn-warning mx-2 float-end"><i class="fa-solid fa-fw fa-pen-fancy ms-1"></i>Edit Data</a>
+              <form action="/shop/<?= $dataMotorcycle['id']; ?>" method="POST">
+                <?= csrf_field(); ?>
+                <input type="hidden" name="_method" value="DELETE">
+                <button type="submit" class="btn btn-danger"><i class="fa-solid fa-fw fa-trash ms-1"></i>Delete</button>
+              </form>
+            <?php endif; ?>
           </div>
         </div>
       </div>

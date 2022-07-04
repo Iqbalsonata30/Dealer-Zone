@@ -39,6 +39,7 @@ class Shop extends BaseController
   public function add()
   {
     $Access = $this->DBUser->where(array('username' => session('username')))->first();
+    if ($Access['role_id'] != 1) return redirect()->to('/home');
     if (!$Access) {
       session()->setFlashdata('Alert', '<div class="alert alert-info alert-dismissible fade show" role="alert">
       <b>Login terlebih dahulu !</b>
@@ -120,6 +121,7 @@ class Shop extends BaseController
   public function edit($slug)
   {
     $Access = $this->DBUser->where(array('username' => session('username')))->first();
+    if ($Access['role_id'] != 1) return redirect()->to('/home');
     if (!$Access) {
       session()->setFlashdata('Alert', '<div class="alert alert-info alert-dismissible fade show" role="alert">
       <b>Login terlebih dahulu !</b>

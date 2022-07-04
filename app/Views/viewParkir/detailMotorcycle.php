@@ -9,11 +9,13 @@
     <div class="card-body">
       <div class="mb-3">
         <div class="d-flex justify-content-between">
-          <form class="d-flex col-lg-4" role="search" action="" method="POST">
+          <form class="d-flex col-md-4 me-2" role="search" action="" method="POST">
             <input class="form-control me-2 lg" name="keyword" type="search" placeholder="Masukkan Keyword Pencarian!" aria-label="Search">
             <button class="btn btn-outline-success" type="submit">Search</button>
           </form>
-          <a href="/shop/add" class="btn btn-dark"><i class="fa-solid fa-fw fa-circle-plus"></i>Tambah Data Motor</a>
+          <?php if ($UserNavbar['role_id'] == 1) : ?>
+            <a href="/shop/add" class="btn btn-dark"><i class="fa-solid fa-fw fa-circle-plus"></i>Tambah Data Motor</a>
+          <?php endif;?>
         </div>
       </div>
       <div class="row">

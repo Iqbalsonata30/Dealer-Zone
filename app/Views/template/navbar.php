@@ -33,10 +33,10 @@
             <img class="rounded-3  img-fluid profile-picture me-2" src="/img/profile/<?= $UserNavbar['profile']; ?>" alt="">
           </div>
           <a class=" nav-link dropdown-toggle text-capitalize" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Hi,<?= $UserNavbar['fullname']; ?>
+            Hi,<?= strtolower($UserNavbar['fullname']); ?>
           </a>
           <ul class="dropdown-menu dropdown-menu-dark animate__animated animate__zoomIn animate__faster" aria-labelledby="navbarDarkDropdownMenuLink">
-            <li><a class="dropdown-item" href="#">Profile</a></li>
+            <li><a class="dropdown-item" href="/<?= $UserNavbar['username']; ?>">Profile</a></li>
             <li><a class="dropdown-item" href="/profile/change">Ganti Password</a></li>
             <li class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="/auth/logout">Logout</a></li>
