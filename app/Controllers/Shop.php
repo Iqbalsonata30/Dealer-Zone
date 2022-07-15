@@ -37,7 +37,7 @@ class Shop extends BaseController
       'UserNavbar'      => $Access,
       'url'             => $url,
     ];
-    return view('viewParkir/detailMotorcycle', $data);
+    return view('viewMotorcycle/detailMotorcycle', $data);
   }
   public function add()
   {
@@ -58,7 +58,7 @@ class Shop extends BaseController
       'UserNavbar'      => $Access,
       'url'             => $url,
     ];
-    return view('viewParkir/form/addMotorcycle', $data);
+    return view('viewMotorcycle/form/addMotorcycle', $data);
   }
   public function save()
   {
@@ -117,7 +117,7 @@ class Shop extends BaseController
     if (is_null($data['dataMotorcycle'])) {
       throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound("Motor $slug tidak dapat ditemukan!");
     }
-    return view('/viewParkir/moreDetail', $data);
+    return view('/viewMotorcycle/moreDetail', $data);
   }
   public function delete($id)
   {
@@ -148,7 +148,7 @@ class Shop extends BaseController
         'UserNavbar'      => $Access,
         'url'             => $url,
       ];
-    return view('viewParkir/form/editMotorcycle', $data);
+    return view('viewMotorcycle/form/editMotorcycle', $data);
   }
   public function update($id)
   {
