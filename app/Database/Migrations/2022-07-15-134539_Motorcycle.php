@@ -4,7 +4,7 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class Cars extends Migration
+class Motorcycle extends Migration
 {
     public function up()
     {
@@ -45,11 +45,11 @@ class Cars extends Migration
             ],
         ]);
         $this->forge->addKey('id', true);
-        $this->forge->createTable('cars');
+        $this->forge->createTable('motorcycle');
     }
 
     public function down()
     {
-        $this->forge->dropTable('cars');
+        $this->forge->dropTable('motorcycle');
     }
 }

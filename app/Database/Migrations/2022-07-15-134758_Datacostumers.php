@@ -4,7 +4,7 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class Costumers extends Migration
+class Datacostumers extends Migration
 {
     public function up()
     {
@@ -19,17 +19,17 @@ class Costumers extends Migration
                 'type'       => 'VARCHAR',
                 'constraint' => '255',
             ],
-            'fullname'    => [
+            'kota'    => [
                 'type'       => 'VARCHAR',
                 'constraint' => '255'
             ],
-            'merk'    => [
+            'kecamatan'    => [
                 'type'       => 'VARCHAR',
                 'constraint' => '255'
             ],  
-            'harga'    => [
-                'type'       => 'BIGINT',
-                'constraint' => '20'
+            'alamat'    => [
+                'type'       => 'VARCHAR',
+                'constraint' => '255'
             ],  
             'created_at' => [
                 'type'       => 'DATETIME',
@@ -41,10 +41,10 @@ class Costumers extends Migration
             ],
         ]);
         $this->forge->addKey('id',true);
-        $this->forge->createTable('costumers');
+        $this->forge->createTable('datacostumers');
     }
     public function down()
     {
-        $this->forge->dropTable('costumers');
+        $this->forge->dropTable('datacostumers');
     }
 }
