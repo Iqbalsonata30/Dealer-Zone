@@ -7,15 +7,15 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/home">Home</a>
+          <a class="nav-link <?= ($url == 'home') ? 'active' : ''; ?> " aria-current="page" href="/home">Home</a>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle dropdown-toggle-split pointer" data-bs-toggle="dropdown" aria-expanded="false">
+          <a class="nav-link <?= ($url == 'shop' || $url == 'cars') ? 'active' : ''; ?> dropdown-toggle dropdown-toggle-split pointer" data-bs-toggle="dropdown" aria-expanded="false">
             Daftar Kendaraan <span class="visually-hidden"></span>
           </a>
           <ul class="dropdown-menu dropdown-menu-dark animate__animated animate__zoomIn animate__faster ">
             <li>
-              <a class="dropdown-item" href="/shop/motorcycle">Kendaraan Roda 2</a>
+              <a class="dropdown-item " href="/shop/motorcycle">Kendaraan Roda 2</a>
             </li>
             <li>
               <hr class="dropdown-divider">
@@ -24,6 +24,9 @@
               <a class="dropdown-item" href="/cars">Kendaraan Roda 4</a>
             </li>
           </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link <?= ($url == 'customers') ? 'active' : ''; ?>" aria-current="page" href="/customers/history">Riwayat Belanja</a>
         </li>
     </div>
     <div class="collapse navbar-collapse justify-content-end" id="navbarNav">

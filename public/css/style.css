@@ -1,8 +1,20 @@
+html,*{
+  margin:0px;
+  padding:0px;
+}
+
+.l1{
+  line-height: 1.6;
+}
+
 .jetBrains{
   font-family:'jetBrains Mono','cursive';
 }
 .pointer{
   cursor:pointer;
+}
+.vertical-flex{
+  height:100vh;
 }
 .swiper {
   width: 700px;
@@ -17,6 +29,12 @@
 }
 .hiddenBorder{
   border:2px solid transparent;
+}
+
+.checkout-img{
+  width:150px;
+  height:150px;
+  box-shadow:inset 0 0 10px rgba(0,0,0,0.2);
 }
 
 .profile{
@@ -56,6 +74,11 @@
 .text-justified{
   text-align:justify;
 }
+.checkout{
+  display:flex;
+  flex-direction: row;
+
+}
 
 @media screen and (max-width:800px){
   .swiper{
@@ -79,5 +102,12 @@
   .hiddenBorder{
     border:2px solid transparent;
     text-align:center;
+  }
+  
+  .checkout{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 }

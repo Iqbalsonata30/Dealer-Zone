@@ -3,6 +3,8 @@ const createAlert = document.getElementById('createAccount');
 const deleteAlert = document.getElementById('alertDelete');
 const editAlert = document.getElementById('edit');
 const AlertEmpty = document.getElementById('kosong');
+const alertAddress = document.getElementById('alamat');
+const buy = document.getElementById('beli');
 if(alert){
   Swal.fire({
     icon: 'success',
@@ -52,3 +54,27 @@ if(createAlert){
     title: 'Akun anda berhasil terdaftar !',
   }) 
 }
+
+if(alertAddress){
+  Swal.fire({
+    icon: 'info',
+    title: 'Alamat anda kosong!!',
+    text: 'Isi alamat terlebih dahulu',
+    confirmButtonText: 'Tambah Alamat'
+  }).then((result)=> {
+    if(result.isConfirmed){
+      location.href = 'http://localhost:8080/costumers/address';
+    }
+  });
+}
+
+if(buy){
+  Swal.fire({
+    icon: 'success',
+    title: 'Congratulations',
+    showClass:{
+      popup:'animate__animated animate__backInRight'
+    },
+    text: 'Pembelian anda akan segera diproses.',
+  }) 
+} 

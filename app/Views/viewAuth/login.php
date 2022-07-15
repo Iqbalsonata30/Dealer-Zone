@@ -1,10 +1,10 @@
 <?= $this->extend('templateAuth/template'); ?>
 <?= $this->section('Auth'); ?>
 
-<div class="container-lg my-5">
-  <div class="row h-100 d-flex flex-column align-items-center align-content-center   ">
-    <div class="col-lg-6  align-self-center ">
-      <div class="card shadow rounded-4 p-3  animate__animated animate__fadeInUp">
+<div class="container-lg ">
+  <div class="row d-flex flex-column justify-content-center align-items-center vertical-flex">
+    <div class=" col-lg-6 align-self-center ">
+      <div class=" card shadow rounded-4 p-3 animate__animated animate__fadeInUp">
         <div class="card-body">
           <h3 class="fw-bolder mb-2 jetBrains">Sign In Dealer-Zone</h3>
           <form action="/auth/verifyUser" method=" POST">

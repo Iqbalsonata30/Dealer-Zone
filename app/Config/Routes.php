@@ -59,10 +59,20 @@ $routes->get('/cars/(:any)', 'Cars::detailCar/$1');
 $routes->get('/auth', 'Auth::index');
 $routes->get('/auth/register', 'Auth::register');
 
+// Costumer Routes
+$routes->get('/costumers/address', 'Customers::address');
+$routes->get('/costumers/history', 'Customers::history');
+$routes->get('/costumers/checkout/(:segment)', 'Customers::checkout/$1');
+$routes->get('/costumers/(:segment)', 'Customers::index/$1');
+
+
 // Profile Routes
-$routes->post('/profile/change', 'Profile::change');
+$routes->get('/profile/change', 'Profile::change');
 $routes->post('/profile/change/(:num)', 'Profile::update/$1');
 $routes->get('/(:segment)', 'Profile::index/$1');
+
+
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing

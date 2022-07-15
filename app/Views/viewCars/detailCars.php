@@ -51,7 +51,7 @@
                 </div>
                 <p class="card-text "><?= $C['deskripsi']; ?></p>
                 <div class="d-flex justify-content-between">
-                  <button type="button" class="btn btn-outline-primary">Beli Sekarang</button>
+                  <a href="/customers/checkout/<?= $C['slug']; ?>" class="btn btn-outline-primary">Beli Sekarang</a>
                   <a href="/cars/<?= $C['slug']; ?>" class="btn btn-outline-secondary">Selengkapnya</a>
                 </div>
               </div>

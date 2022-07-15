@@ -31,9 +31,10 @@ class Home extends BaseController
             'Title'             => 'Dashboard Dealer',
             'totalMotorcycles'  => $this->DBShop->getTotalMotorcycles(),
             'totalCars'         => $this->DBCars->getTotalCars(),
-            'totalUsers'         => $this->DBUser->getTotalUsers(),
+            'totalUsers'        => $this->DBUser->getTotalUsers(),
             'DataMotorcycle'    => $this->DBShop->findAll(),
             'UserNavbar'        => $Access,
+            'url'               => $this->request->getPath(),
         ];
         return view('viewDashboard/home', $data);
     }

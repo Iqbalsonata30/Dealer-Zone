@@ -40,7 +40,7 @@
               <label for="profile" class="form-label ">Gambar Profile</label>
               <div class="row d-flex align-items-center">
                 <div class="col-md-2">
-                  <img src="" class="shadow  rounded-5 img-fluid showcaseProfile responsive">
+                  <img src="/img/profile/default.jpg" class="shadow  rounded-5 img-fluid showcaseProfile responsive">
                 </div>
                 <div class="col-md-10">
                   <input class="form-control <?= ($validation->hasError('profile')) ? 'is-invalid' : ''; ?> " type="file" id="profile" name="profile" onchange="previewProfilePicture()">

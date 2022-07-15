@@ -15,7 +15,7 @@
           </form>
           <?php if ($UserNavbar['role_id'] == 1) : ?>
             <a href="/shop/add" class="btn btn-dark"><i class="fa-solid fa-fw fa-circle-plus"></i>Tambah Data Motor</a>
-          <?php endif;?>
+          <?php endif; ?>
         </div>
       </div>
       <div class="row">
@@ -31,7 +31,7 @@
                 <p class="card-text"><?= $DM['deskripsi']; ?></p>
 
                 <div class="d-flex justify-content-between">
-                  <a href="#" class="btn btn-outline-primary"><i class="fa-solid fa-fw fa-cart-shopping"></i>Beli Sekarang</a>
+                  <a href="/costumers/<?= $DM['slug']; ?>" class="btn btn-outline-primary"><i class="fa-solid fa-fw fa-cart-shopping"></i>Beli Sekarang</a>
                   <a href="/shop/<?= $DM['slug']; ?>" class="btn btn-outline-secondary"><i class="fa-solid fa-fw fa-person-walking-arrow-right ms-1"></i>Selengkapnya</a>
                 </div>
               </div>

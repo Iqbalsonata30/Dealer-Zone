@@ -15,4 +15,7 @@ class ModelUsers extends Model
         $query = $this->query('select * from users');
         return $query->getNumRows();
     }
+
+
+
 }

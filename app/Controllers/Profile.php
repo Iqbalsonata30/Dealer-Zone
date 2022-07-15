@@ -31,6 +31,7 @@ class Profile extends BaseController
                 'Title'      => "$FullNameUser - $UsernameUser",
                 'UserNavbar' => $Access,
                 'profile'    => $user,
+                'url'        => $this->request->getPath(),
             ];
             return view('viewProfile/profile', $data);
         } catch (\Throwable) {
@@ -51,6 +52,7 @@ class Profile extends BaseController
         $data = [
             'Title'      => 'Profile - Ganti Password',
             'UserNavbar' => $Access,
+            'url'        => $this->request->getPath(),
         ];
         return view('viewProfile/profilePassword', $data);
     }

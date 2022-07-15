@@ -17,6 +17,8 @@ class Shop extends BaseController
   }
   public function motorcycle()
   {
+    $url = $this->request->getPath();
+    $url = explode("/", $url)[0];
     $search = $this->request->getVar('keyword');
     $Access = $this->DBUser->where(array('username' => session('username')))->first();
     if (!$Access) {
@@ -29,15 +31,18 @@ class Shop extends BaseController
     ($search) ? $SearchMotorcycle = $this->DBShop->searchData($search) : $SearchMotorcycle = $this->DBShop;
     helper(['my_helper']);
     $data = [
-      'Title' => 'Shopping Area - Motorcycle',
-      'DataMotorcycle' => $SearchMotorcycle->paginate(3, 'motorcycle'),
-      'Pager' => $this->DBShop->pager,
-      'UserNavbar'    => $Access,
+      'Title'           => 'Shopping Area - Motorcycle',
+      'DataMotorcycle'  => $SearchMotorcycle->paginate(3, 'motorcycle'),
+      'Pager'           => $this->DBShop->pager,
+      'UserNavbar'      => $Access,
+      'url'             => $url,
     ];
     return view('viewParkir/detailMotorcycle', $data);
   }
   public function add()
   {
+    $url = $this->request->getPath();
+    $url = explode("/", $url)[0];
     $Access = $this->DBUser->where(array('username' => session('username')))->first();
     if ($Access['role_id'] != 1) return redirect()->to('/home');
     if (!$Access) {
@@ -48,9 +53,10 @@ class Shop extends BaseController
       return redirect()->to('/auth');
     }
     $data = [
-      'Title' => 'Add Data Motorcycle',
-      'validation' => \Config\Services::validation(),
-      'UserNavbar'    => $Access,
+      'Title'           => 'Add Data Motorcycle',
+      'validation'      => \Config\Services::validation(),
+      'UserNavbar'      => $Access,
+      'url'             => $url,
     ];
     return view('viewParkir/form/addMotorcycle', $data);
   }
@@ -92,6 +98,8 @@ class Shop extends BaseController
   }
   public function detail($slug)
   {
+    $url = $this->request->getPath();
+    $url = explode("/", $url)[0];
     $Access = $this->DBUser->where(array('username' => session('username')))->first();
     if (!$Access) {
       session()->setFlashdata('Alert', '<div class="alert alert-info alert-dismissible fade show" role="alert">
@@ -101,9 +109,10 @@ class Shop extends BaseController
       return redirect()->to('/auth');
     }
     $data = [
-      'Title' => 'Detail Lengkap Motor',
-      'dataMotorcycle' => $this->DBShop->getMoreDetailMotorcycle($slug),
-      'UserNavbar'    => $Access,
+      'Title'           => 'Detail Lengkap Motor',
+      'dataMotorcycle'  => $this->DBShop->getMoreDetailMotorcycle($slug),
+      'UserNavbar'      => $Access,
+      'url'             => $url,
     ];
     if (is_null($data['dataMotorcycle'])) {
       throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound("Motor $slug tidak dapat ditemukan!");
@@ -120,6 +129,8 @@ class Shop extends BaseController
   }
   public function edit($slug)
   {
+    $url = $this->request->getPath();
+    $url = explode("/", $url)[0];
     $Access = $this->DBUser->where(array('username' => session('username')))->first();
     if ($Access['role_id'] != 1) return redirect()->to('/home');
     if (!$Access) {
@@ -131,10 +142,11 @@ class Shop extends BaseController
     }
     $data =
       [
-        'Title' => 'Edit Data Motor',
-        'dataMotorcycle' => $this->DBShop->getMoreDetailMotorcycle($slug),
-        'validation' => \Config\Services::validation(),
-        'UserNavbar'    => $Access,
+        'Title'           => 'Edit Data Motor',
+        'dataMotorcycle'  => $this->DBShop->getMoreDetailMotorcycle($slug),
+        'validation'      => \Config\Services::validation(),
+        'UserNavbar'      => $Access,
+        'url'             => $url,
       ];
     return view('viewParkir/form/editMotorcycle', $data);
   }
